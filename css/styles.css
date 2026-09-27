@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Concrete Mix Calculator Pro - Stylesheet (IS 10262:2019 & IS 456:2000)
+   ========================================================================== */
+
+/* 1. Reset & Global Viewport Rules (Prevents Horizontal Overflow) */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 2. Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #0284c7;
+}
+
+/* 3. Keyframes & Animation Classes */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseSubtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+    animation: pulseSubtle 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
+}
+
+/* 4. Active Tab Indicators */
+.nav-tab.active {
+    color: #38bdf8 !important;
+    border-bottom-color: #38bdf8 !important;
+    background-color: rgba(14, 165, 233, 0.08);
+}
+
+/* 5. Tooltips & Interactive Controls */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.6;
+}
+
+/* 6. Back-to-Top Floating Button */
+#btnBackToTop {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#btnBackToTop.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+#btnBackToTop.hidden-state {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+}
+
+/* 7. Sticky Mobile Bottom CTA Bar */
+@media (max-width: 768px) {
+    .sticky-mobile-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 45;
+        backdrop-filter: blur(12px);
+        background: rgba(15, 23, 42, 0.95);
+        border-top: 1px solid #334155;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Ensure content does not get buried behind sticky footer */
+    body {
+        padding-bottom: 72px;
+    }
+}
+
+/* 8. High-Precision Print Stylesheet (For Lab Assignment & BIS Submission) */
+@media print {
+    /* Hide all non-report navigation, headers, footers, and interactive elements */
+    header,
+    nav,
+    #hero-section,
+    #faq-section,
+    #case-studies-section,
+    #map-section,
+    footer,
+    #btnBackToTop,
+    .sticky-mobile-cta,
+    .no-print,
+    #tab-calculator,
+    #tab-steps,
+    #tab-verification,
+    #tab-batching {
+        display: none !important;
+    }
+
+    /* Force unhide the report document */
+    #tab-report,
+    #reportDocument {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+        padding-bottom: 0 !important;
+    }
+
+    table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    th, td {
+        border: 1px solid #333333 !important;
+        color: #000000 !important;
+        padding: 6px 10px !important;
+    }
+
+    th {
+        background-color: #f1f5f9 !important;
+    }
+
+    .print-break-inside-avoid {
+        page-break-inside: avoid;
+    }
+}
